@@ -1,0 +1,45 @@
+<view class="todolist_container">
+  <view class="top">
+    <view class="top_left">
+      <text>ToDoList</text>
+    </view>
+    <view class="top_right">
+      <input type="text" placeholder="添加ToDo" class="input_class" bindinput="inputValue" bindconfirm="addToDo" data-value="inputValue" />
+    </view>
+  </view>
+  <view class="middle">
+    <view class="pendding_container">
+      <text class="font_status">正在进行  {{list.length}}</text>
+      <view>
+        <view wx:for="{{ list }}" class="pendding_box">
+          <view>
+            <checkbox color="default" class="checkbox_style" bindtap="ToFinished" data-val="{{item.status}}" data-index="{{index}}"></checkbox>
+          </view>
+          <view>
+            {{item.inputValue.value}}</view>
+          <view>
+            <button size="mini" type="default"  bindtap="del" data-index="{{index}}">删除</button>
+
+          </view>
+        </view>
+
+
+      </view>
+    </view>
+    <view class="finished_container">
+      <text class="font_status">已经完成  {{finishedList.length}}</text>
+      <view class="finished_box" wx:for="{{finishedList}}">
+         <view>
+            <checkbox color="default" class="checkbox_style" bindtap="ToPendding" data-val="{{item.status}}" data-index="{{index}}" checked="{{item.status}}"></checkbox>
+          </view>
+          <view>
+            {{item.inputValue.value}}</view>
+          <view>
+            <button size="mini" type="default" bindtap="del" data-index="{{index}}">删除</button>
+
+          </view>
+      </view>
+    </view>
+  </view>
+
+</view>
